@@ -1,5 +1,6 @@
 import React from "react";
 import { FaStar, FaEye, FaRegBookmark, FaShareAlt } from "react-icons/fa";
+import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
   const {
@@ -10,6 +11,7 @@ const NewsCard = ({ news }) => {
     rating,
     total_view,
     published_date,
+    id
   } = news;
 
   return (
@@ -50,9 +52,13 @@ const NewsCard = ({ news }) => {
       <p className="text-gray-600 text-sm md:text-base">
         {details?.length > 200 ? details.slice(0, 200) + "..." : details}
         {details?.length > 200 && (
-          <span className="text-orange-500 font-semibold cursor-pointer ml-1">
+          <Link
+            onClick={() => window.scrollTo(0, 0)}
+            to={`/news-details/${id}`}
+            className="text-orange-500 font-semibold cursor-pointer ml-1 hover:underline"
+          >
             Read More
-          </span>
+          </Link>
         )}
       </p>
 

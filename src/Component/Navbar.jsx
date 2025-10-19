@@ -1,8 +1,24 @@
-import React from 'react';
-import { NavLink } from 'react-router';
+
+import { Link, NavLink } from 'react-router';
 import user from '../assets/./user.png'
+import { AuthContext } from '../Provider/AuthContext';
+import { use } from 'react';
+
 
 const Navbar = () => {
+    const {logOut,users,setUsers}=use(AuthContext)
+    console.log(users)
+
+    const handleLogOut=()=>{
+        // console.log("clicked")
+        logOut().then(()=>{
+            setUsers(null)
+            
+        }).catch(error=>{
+            console.log(error.message)
+        })
+    }
+
     return (
         <div className='flex justify-between mt-5'>
            <div className='left-side'></div>
@@ -18,7 +34,12 @@ const Navbar = () => {
 
            <div className='right-side flex  gap-5'>
             <img src={user} alt="" />
-            <button className='bg-primary text-white px-10 py-2'>Log in</button>
+            {
+                users?<button onClick={handleLogOut} className='bg-primary text-white px-10 py-2'> Log out</button>:
+                  <Link to="/auth/login" className='bg-primary text-white px-10 py-2'>Log in</Link>
+                
+            }
+          
 
            </div>
             
