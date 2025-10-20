@@ -1,8 +1,9 @@
 import React, { use } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
 
 const Login = () => {
+    const navigate=useNavigate()
 
     const {logIn}=use(AuthContext);
     const handleLogIn=(e)=>{
@@ -12,6 +13,7 @@ const Login = () => {
         logIn(email,password).then(result=>{
             console.log(result.user)
             e.target.reset()
+           navigate(`${location.state? location.state:"/"}`)
         }).catch(error=>{
             console.log(error.code,error.message)
         })

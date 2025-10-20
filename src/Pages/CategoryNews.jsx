@@ -7,7 +7,7 @@ const CategoryNews = () => {
     const [categoryNews,setCategoryNews]=useState([])
     const {id}=useParams()
     const data=useLoaderData()
-    console.log(data);
+    
 
 
 

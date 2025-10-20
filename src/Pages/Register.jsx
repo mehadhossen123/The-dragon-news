@@ -1,22 +1,37 @@
 import React, { use } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
 
 const Register = () => {
-const {signUp,setUsers}=use(AuthContext)
+const { signUp, setUsers, updateUser } = use(AuthContext);
+const navigate=useNavigate();
 
 const handleSigUP=(e)=>{
     e.preventDefault();
     const form=e.target;
      const email=form.email.value;
-    //  const name=form.name.value;
+     const name=form.name.value;
      const password=form.password.value;
-    //  const photo=form.photo.value;
-    //  console.log(email,name,password,photo);
-    console.log(email,password)
+     const photo=form.photo.value;
+
+    
     signUp(email,password)
+
+
+
     .then(result=>{
-        setUsers(result.user)
+         updateUser({
+            displayName:name,photoURL:photo
+         }).then(()=>{
+              setUsers(result.user);
+              navigate("/")
+
+         }).catch((error)=>{
+            console.log(error.code)
+         })
+
+
+      
         // console.log(result.user);
         form.reset()
         

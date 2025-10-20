@@ -7,7 +7,7 @@ import { use } from 'react';
 
 const Navbar = () => {
     const {logOut,users,setUsers}=use(AuthContext)
-    console.log(users)
+    
 
     const handleLogOut=()=>{
         // console.log("clicked")
@@ -33,7 +33,7 @@ const Navbar = () => {
 
 
            <div className='right-side flex  gap-5'>
-            <img src={user} alt="" />
+            <img className='w-12 rounded-full' src={users?users.photoURL:user} alt="" />
             {
                 users?<button onClick={handleLogOut} className='bg-primary text-white px-10 py-2'> Log out</button>:
                   <Link to="/auth/login" className='bg-primary text-white px-10 py-2'>Log in</Link>
