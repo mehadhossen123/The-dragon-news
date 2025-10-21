@@ -6,7 +6,7 @@ import { useLoaderData, useParams } from 'react-router';
 
 const NewsDetails = () => {
     const [news,setNews]=useState({})
-    console.log(news);
+    // console.log(news);
     const {id}=useParams();
     // console.log(id)
     const data=useLoaderData()

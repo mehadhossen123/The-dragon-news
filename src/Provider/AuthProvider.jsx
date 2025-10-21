@@ -6,7 +6,7 @@ import { auth } from '../firebase/firebase.init';
 const AuthProvider = ({children}) => {
     const [users,setUsers]=useState(null)
     const [loading  ,setLoading ]=useState(true);
-     console.log(users)
+    //  console.log(users)
     
     const signUp=(email,password)=>{
         setLoading(true)
